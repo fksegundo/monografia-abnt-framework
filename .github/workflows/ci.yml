@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --upgrade pip ruff
+      - run: ruff check scripts tests
+
+  test:
+    name: Testes + smoke (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e .[dev]
+      - name: Testes unitários (smoke)
+        run: python -m pytest tests -q
+
+      # Smoke ponta-a-ponta: gera o documento de exemplo com o template genérico.
+      - name: Gera documento de exemplo
+        run: |
+          python -m scripts.gerar_monografia \
+            --template template/modelo.docx \
+            --drafts exemplos/drafts \
+            --saida output/monografia_exemplo.docx \
+            --md-saida output/monografia_exemplo.md
+      - name: Verifica documento gerado
+        run: |
+          python -c "import docx, pathlib; d = docx.Document('output/monografia_exemplo.docx'); t = ' '.join(p.text for p in d.paragraphs); assert '1 INTRODUÇÃO' in t and 'REFERÊNCIAS' in t; print('OK:', len(d.paragraphs), 'parágrafos')"

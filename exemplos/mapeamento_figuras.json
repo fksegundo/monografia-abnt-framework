@@ -1,0 +1,14 @@
+{
+  "INSERIR FIGURA 1 AQUI": {
+    "imagem": "assets/figura1.png",
+    "legenda": "Figura 1 — Exemplo de arquitetura.",
+    "largura_cm": 14,
+    "fonte": "Fonte: Elaborado pelo autor (2026)."
+  },
+  "INSERIR FIGURA 2 AQUI": {
+    "imagem": "assets/figura2.png",
+    "legenda": "Figura 2 — Outro diagrama.",
+    "largura_cm": 12,
+    "fonte": "Fonte: Elaborado pelo autor (2026)."
+  }
+}

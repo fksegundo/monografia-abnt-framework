@@ -1,0 +1,27 @@
+# Termos em inglês / estrangeirismos que devem ficar em ITÁLICO no corpo do texto.
+#
+# Este arquivo é SOMADO à lista base genérica (ver scripts/formatacao/abnt.py,
+# TERMOS_INGLES_BASE). Coloque UM termo por linha. Linhas em branco e linhas
+# iniciadas com `#` são ignoradas.
+#
+# A comparação é case-insensitive, então escreva o termo da forma que preferir
+# (ex.: "multi-cloud" e "Multi-Cloud" têm o mesmo efeito). Termos compostos com
+# espaços ou hífens funcionam normalmente.
+#
+# Os termos específicos do seu tema ficam aqui; os termos usados no exemplo de
+# dados abaixo já vêm preenchidos como demonstração.
+
+Data Lake
+Data Lakes
+Data Warehouse
+Data Warehouses
+Lakehouse
+lift-and-shift
+multi-cloud
+re-architect
+re-platform
+schema-on-read
+schema-on-write
+serverless
+time travel
+vendor lock-in

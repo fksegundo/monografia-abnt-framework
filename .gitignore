@@ -1,0 +1,35 @@
+# Dependências e ambientes
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+
+# Arquivos gerados pelo framework
+output/
+*.backup.docx
+*.tmp
+
+# Segredos e ambientes
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs
+*.log
+logs/
+
+# IDE e editores
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

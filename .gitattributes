@@ -1,0 +1,13 @@
+# Normalização de fim de linha (LF no repositório)
+* text=auto eol=lf
+
+# Arquivos binários .docx não devem ser interpretados como texto
+*.docx binary
+*.doc binary
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary

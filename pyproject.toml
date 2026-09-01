@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "framework-monografia"
+version = "0.1.0"
+description = "Framework de geração de monografias/TCCs formatados em ABNT a partir de rascunhos em Markdown."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Framework de Geração de Monografias (ABNT)" }]
+keywords = ["abnt", "monografia", "tcc", "docx", "markdown", "academico", "latex", "geracao"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Text Processing :: Markup",
+    "Topic :: Text Processing :: Markup :: Markdown",
+]
+dependencies = [
+    "python-docx>=1.2.0",
+    "lxml>=5.0",
+    "pypdf>=4.0",
+]
+
+[project.optional-dependencies]
+# Extra para o fluxo de IA: validação de conteúdo de referências via markitdown.
+ai = [
+    "markitdown[pdf]>=0.1.7",
+    "requests>=2.31.0",
+]
+dev = [
+    "pytest>=7.0",
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+monografia = "scripts.cli:main"
+
+[tool.setuptools]
+packages = ["scripts", "scripts.formatacao"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json"]
+
+[tool.ruff]
+line-length = 100
+
+# Checa apenas erros de sintaxe e Pyflakes (variáveis/imports não usados).
+# As regras de estilo (imports, docstrings, try/except, etc.) são deliberadamente
+# ignoradas para não interromper o lint por avisos pré-existentes no código legado.
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["F811"]
+
+[project.urls]
+Homepage = "https://github.com/fksegundo/monografia-abnt-framework"
